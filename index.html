@@ -38,9 +38,9 @@
 	
 	<div id="highlighted_clan">
 		<div id="highlighted_clan-img_container">
-			<img id="highlighted_clan-img" src="logos/placeholder.png">
+			<img id="highlighted_clan-img" src="">
 		</div>
-		<p id="highlighted_clan-xp">___xp</p>
+		<p id="highlighted_clan-xp">No available clans</p>
 	</div>
 	
 	<div id="clan_container">
@@ -135,18 +135,16 @@
 			</tr>
 		</table>
 	</div>
-	
-	<p id="notice"></p>
 </body>
 
 <script id="timers">
-	var user_level = "";
+	var user_level = 0;
 	var vos1 = "";
 	var vos2 = "";
 	var using_lurker = false;
 	var available_clans = [];
 	var ordered_clans = [];
-	var CLAN_TIMEOUT_SECONDS = 0.2*60;
+	var CLAN_TIMEOUT_SECONDS = 20*60;
 	
 	var clan_data = {
 		"iorwerth": {
@@ -205,12 +203,12 @@
 
 <script>
 	$(document).ready(function() {
+		updateAvailableClans();
 		$("#input_level").on('change', function() {
 			user_level = $("#input_level").val();
 			updateAvailableClans();
 			updateOrderedClans();
 			updateHighlightedClan();
-			//updateClanOrder();
 		});
 		$("#input_lurker").on('change', function() {
 			if ($("#input_lurker").prop('checked')) {
@@ -221,7 +219,6 @@
 			updateAvailableClans();
 			updateOrderedClans();
 			updateHighlightedClan();
-			//updateClanOrder();
 		});
 		$("#select_vos1").on('change', function() {
 			vos1 = $("#select_vos1").val();
@@ -240,7 +237,6 @@
 		
 		$("#button_iorwerth").click(function() {
 			$("#iorwerth").addClass("caught");
-			//updateVos();
 			setTimer("iorwerth", CLAN_TIMEOUT_SECONDS);
 			$("#button_iorwerth").prop("disabled", true);
 			$("#button_iorwerth").hide();
@@ -248,7 +244,6 @@
 		});
 		$("#button_ithell").click(function() {
 			$("#ithell").addClass("caught");
-			//updateVos();
 			setTimer("ithell", CLAN_TIMEOUT_SECONDS);
 			$("#button_ithell").prop("disabled", true);
 			$("#button_ithell").hide();
@@ -256,7 +251,6 @@
 		});
 		$("#button_cadarn").click(function() {
 			$("#cadarn").addClass("caught");
-			//updateVos();
 			setTimer("cadarn", CLAN_TIMEOUT_SECONDS);
 			$("#button_cadarn").prop("disabled", true);
 			$("#button_cadarn").hide();
@@ -264,7 +258,6 @@
 		});
 		$("#button_amlodd").click(function() {
 			$("#amlodd").addClass("caught");
-			//updateVos();
 			setTimer("amlodd", CLAN_TIMEOUT_SECONDS);
 			$("#button_amlodd").prop("disabled", true);
 			$("#button_amlodd").hide();
@@ -272,7 +265,6 @@
 		});
 		$("#button_trahaearn").click(function() {
 			$("#trahaearn").addClass("caught");
-			//updateVos();
 			setTimer("trahaearn", CLAN_TIMEOUT_SECONDS);
 			$("#button_trahaearn").prop("disabled", true);
 			$("#button_trahaearn").hide();
@@ -280,7 +272,6 @@
 		});
 		$("#button_hefin").click(function() {
 			$("#hefin").addClass("caught");
-			//updateVos();
 			setTimer("hefin", CLAN_TIMEOUT_SECONDS);
 			$("#button_hefin").prop("disabled", true);
 			$("#button_hefin").hide();
@@ -288,7 +279,6 @@
 		});
 		$("#button_crwys").click(function() {
 			$("#crwys").addClass("caught");
-			//updateVos();
 			setTimer("crwys", CLAN_TIMEOUT_SECONDS);
 			$("#button_crwys").prop("disabled", true);
 			$("#button_crwys").hide();
@@ -296,7 +286,6 @@
 		});
 		$("#button_meilyr").click(function() {
 			$("#meilyr").addClass("caught");
-			//updateVos();
 			setTimer("meilyr", CLAN_TIMEOUT_SECONDS);
 			$("#button_meilyr").prop("disabled", true);
 			$("#button_meilyr").hide();
@@ -306,23 +295,20 @@
 	
 	function updateAvailableClans() {
 		available_clans = [];
-		if (user_level !== "") {
-			var effective_level = parseInt(user_level);
-			if (using_lurker == true) {
-				effective_level = effective_level + 4;
-			}		
-			if (effective_level <= 90) {
-				$("#notice").html("You are unable to thieve from the Prifddinas elves.");
+		var effective_level = parseInt(user_level);
+		if (using_lurker == true) {
+			effective_level = effective_level + 4;
+		}		
+		
+		for (var key in clan_data) {
+			if (clan_data[key].level <= effective_level) {
+				$("#" + key).removeClass("unavailable");
+				available_clans.push(key);
 			} else {
-				$("#notice").html("");
-			}
-			
-			for (var key in clan_data) {
-				if (clan_data[key].level <= effective_level) {
-					available_clans.push(key);
-				}
+				$("#" + key).addClass("unavailable");
 			}
 		}
+		updateVos();
 	}
 	function updateOrderedClans() {
 		ordered_clans = [];
@@ -346,12 +332,18 @@
 	}
 	function updateHighlightedClan() {
 		var best_clan = getBestClan();
-		$("#highlighted_clan-img").attr("src", "logos/" + best_clan + ".png");
-		if (vos1 == best_clan || vos2 == best_clan) {
-			$("#highlighted_clan-xp").html(clan_data[best_clan].vos_xp + "xp");
+		if (best_clan !== "none") {
+			$("#highlighted_clan-img").attr("src", "logos/" + best_clan + ".png");
+			if (vos1 == best_clan || vos2 == best_clan) {
+				$("#highlighted_clan-xp").html(clan_data[best_clan].vos_xp + "xp");
+			} else {
+				$("#highlighted_clan-xp").html(clan_data[best_clan].xp + "xp");
+			}
 		} else {
-			$("#highlighted_clan-xp").html(clan_data[best_clan].xp + "xp");
+			$("#highlighted_clan-img").attr("src", "");
+			$("#highlighted_clan-xp").html("No available clans");
 		}
+		updateVos();
 	}
 	
 	function updateVos() {
@@ -363,7 +355,7 @@
 		$("#hefin").removeClass("vos");
 		$("#crwys").removeClass("vos");
 		$("#meilyr").removeClass("vos");
-		//makeshift wait(3ms) before re-adding vos classes (necessary to restart the keyframes animations for some reason)
+		//makeshift wait(10ms) before re-adding vos classes (necessary to restart the keyframes animations for some reason)
 		setTimeout(function(){
 			if (vos1 !== "") {
 				$("#" + vos1).addClass("vos");
@@ -371,54 +363,8 @@
 			if (vos2 !== "") {
 				$("#" + vos2).addClass("vos");
 			}
-		}, 3);
+		}, 500);
 	}
-	
-	/*
-	function updateClanOrder() {
-		var available_clans = [];
-		var ordered_clans = [];
-		if (user_level !== "" && vos1 != "" && vos2 != "") {
-			var effective_level = 0;
-			if (using_lurker == true) {
-				effective_level = parseInt(user_level) + 4;
-			} else {
-				effective_level = user_level;
-			}			
-			if (effective_level <= 90) {
-				$("#notice").html("You are unable to thieve from the Prifddinas elves.");
-			} else {
-				$("#notice").html("");
-			}
-			
-			for (var key in clan_data) {
-				if (clan_data[key].level <= effective_level) {
-					available_clans.push(key);
-				}
-			}
-			
-			while (ordered_clans.length < available_clans.length) {
-				var current_xp;
-				var highest_xp = 0;
-				var highest_clan = "";
-				for (var i = 0; i < available_clans.length; i++) {
-					if (available_clans[i] == vos1 || available_clans[i] == vos2) {
-						current_xp = clan_data[available_clans[i]].vos_xp;
-					} else {
-						current_xp = clan_data[available_clans[i]].xp;
-					}
-					if (current_xp >= highest_xp && $.inArray(available_clans[i], ordered_clans) == -1) {
-						highest_xp = current_xp;
-						highest_clan = available_clans[i];
-					}
-				}
-				ordered_clans.push(highest_clan);
-			}
-			
-			//Got to here. Clans successfully sorted.
-		}
-	}
-	*/
 	
 	function getBestClan() {
 		for (i = 0; i < ordered_clans.length; i++) {
@@ -426,7 +372,7 @@
 				return ordered_clans[i];
 			}
 		}
-		return "placeholder";
+		return "none";
 	}
 	
 	var globalTimer = setInterval(globalTick, 1000);
