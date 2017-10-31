@@ -1,5 +1,6 @@
 body {
 	font-family: arial;
+	text-align: center;
 }
 #label_input_level {
 	font-weight: bold;
@@ -53,6 +54,9 @@ table {
 	animation-name: vosCaughtBorder;
 	animation-duration: 2s;
 	animation-iteration-count: infinite;
+}
+.unavailable {
+	visibility: hidden;
 }
 
 .clan-img {
