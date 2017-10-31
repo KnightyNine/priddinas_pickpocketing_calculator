@@ -1,0 +1,166 @@
+body {
+	font-family: arial;
+}
+#label_input_level {
+	font-weight: bold;
+}
+#input_level {
+	width: 50px;
+}
+#label_input_select {
+	font-weight: bold;
+}
+#highlighted_clan {
+	text-align: center;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	height: 150px;
+}
+#highlighted_clan-img_container {
+	height: 100px;
+}
+#highlighted_clan-img {
+	
+}
+#highlighted_clan p {
+	font-weight: bold;
+}
+
+table {
+	margin: 0px auto;
+}
+.clan {
+	width: 300px;
+	height: 100px;
+	padding: 5px 0px 5px 0px;
+	background-color: #FAFAFA;
+	border: 5px solid #DDD;
+	border-radius: 5px;
+	display: inline-block;
+}
+.vos {
+	animation-name: vosBorder;
+	animation-duration: 2s;
+	animation-iteration-count: infinite;
+}
+.caught {
+	border: 5px solid #F8F8F8 !important;
+	background-color: #FFF !important;
+	color: #DDDDDD !important;
+}
+.vos.caught {
+	animation-name: vosCaughtBorder;
+	animation-duration: 2s;
+	animation-iteration-count: infinite;
+}
+
+.clan-img {
+	height: 100px;
+	width: 85px;
+	float: left;
+	//border-right: 1px solid #E0E0E0;
+}
+
+.clan-info {
+	position: relative;
+	height: 100%;
+	width: 200px;
+	float: right;
+	padding: 0px 5px 0px 5px;
+}
+.clan-info .name {
+	position: absolute;
+	top: 3px;
+	left: 5px;
+	
+	font-size: 1em;
+	font-family: arial;
+	font-weight: bold;
+}
+.clan-info .timer {
+	position: absolute;
+	top: 3px;
+	right: 5px;
+	
+	font-size: 0.8em;
+	font-family: arial;
+}
+.clan-info .input_button {
+	position: absolute;
+	bottom: 3px;
+	right: 5px;
+}
+
+.clan#iorwerth {
+	background-color: #F0F0F0;
+}
+.clan#ithell {
+	background-color: #FAFAFA;
+}
+.clan#cadarn {
+	background-color: #EAFFEA;
+}
+.clan#amlodd {
+	background-color: #D9F4FF;
+}
+.clan#trahaearn {
+	background-color: #FEE3FF;
+}
+.clan#hefin {
+	background-color: #FFE8E8;
+}
+.clan#crwys {
+	background-color: #FEFFE8;
+}
+.clan#meilyr {
+	background-color: #E8FFFC;
+}
+
+.clan#iorwerth.caught .clan-img{
+	background: url(logos/iorwerth_caught.png) no-repeat center center !important;
+}
+.clan#ithell.caught .clan-img{
+	background: url(logos/ithell_caught.png) no-repeat center center !important;
+}
+.clan#cadarn.caught .clan-img{
+	background: url(logos/cadarn_caught.png) no-repeat center center !important;
+}
+.clan#amlodd.caught .clan-img{
+	background: url(logos/amlodd_caught.png) no-repeat center center !important;
+}
+.clan#trahaearn.caught .clan-img{
+	background: url(logos/trahaearn_caught.png) no-repeat center center !important;
+}
+.clan#hefin.caught .clan-img{
+	background: url(logos/hefin_caught.png) no-repeat center center !important;
+}
+.clan#crwys.caught .clan-img{
+	background: url(logos/crwys_caught.png) no-repeat center center !important;
+}
+.clan#meilyr.caught .clan-img{
+	background: url(logos/meilyr_caught.png) no-repeat center center !important;
+}
+
+@keyframes vosBorder {
+	0% {
+		border: 5px solid #DDD;
+	}
+	50% {
+		border: 5px solid #AAFFFF;
+	}
+	100% {
+		border: 5px solid #DDD;
+	}
+}
+@keyframes vosCaughtBorder {
+	0% {
+		border: 5px solid #F8F8F8;
+	}
+	50% {
+		border: 5px solid #EEFFFF;
+	}
+	100% {
+		border: 5px solid #F8F8F8;
+	}
+}
