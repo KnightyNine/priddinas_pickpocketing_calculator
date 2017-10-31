@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Prifddinas pickpocketing calculator</title>
+	<link rel="stylesheet" href="prifpp_style.css" type="text/css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+</head>
+<body>
+	<h1>Prifddinas pickpocketing calculator</h1>
+	
+	<div id="user_inputs">
+		<label id="label_input_level">Thieving Level: </label><br><input type="text" class="input_text" id="input_level" maxlength="2" onkeypress='return event.charCode >= 48 && event.charCode <= 57'><br>
+		<input type="checkbox" class="input_checkbox" id="input_lurker">Using Abyssal Lurker<br><br>
+		<label id="label_input_select">Current VoS: </label><br>
+		<select class="input_select" id="select_vos1">
+			<option disabled selected value=""></option>
+			<option value="iorwerth">Iorwerth</option>
+			<option value="ithell">Ithell</option>
+			<option value="cadarn">Cadarn</option>
+			<option value="amlodd">Amlodd</option>
+			<option value="trahaearn">Trahaearn</option>
+			<option value="hefin">Hefin</option>
+			<option value="crwys">Crwys</option>
+			<option value="meilyr">Meilyr</option>
+		</select>
+		<select class="input_select" id="select_vos2">
+			<option disabled selected value=""></option>
+			<option value="iorwerth">Iorwerth</option>
+			<option value="ithell">Ithell</option>
+			<option value="cadarn">Cadarn</option>
+			<option value="amlodd">Amlodd</option>
+			<option value="trahaearn">Trahaearn</option>
+			<option value="hefin">Hefin</option>
+			<option value="crwys">Crwys</option>
+			<option value="meilyr">Meilyr</option>
+		</select>
+	</div><br><br>
+	
+	<div id="highlighted_clan">
+		<div id="highlighted_clan-img_container">
+			<img id="highlighted_clan-img" src="logos/placeholder.png">
+		</div>
+		<p id="highlighted_clan-xp">___xp</p>
+	</div>
+	
+	<div id="clan_container">
+		<table>
+			<tr>
+				<td>
+					<div class="clan" id="iorwerth">
+						<div class="clan-img" style="background: url(logos/iorwerth.png) no-repeat center center;"></div>
+						<div class="clan-info">
+							<text class="name" id="name_iorwerth">Iorwerth</text>
+							<text class="timer" id="timer_iorwerth">Ready!</text>
+							<button class="input_button" id="button_iorwerth">Caught</button>
+						</div>
+					</div>
+				</td>
+				<td>
+					<div class="clan" id="ithell">
+						<div class="clan-img" style="background: url(logos/ithell.png) no-repeat center center;"></div>
+						<div class="clan-info">
+							<text class="name" id="name_ithell">Ithell</text>
+							<text class="timer" id="timer_ithell">Ready!</text>
+							<button class="input_button" id="button_ithell">Caught</button>
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div class="clan" id="cadarn">
+						<div class="clan-img" style="background: url(logos/cadarn.png) no-repeat center center;"></div>
+						<div class="clan-info">
+							<text class="name" id="name_cadarn">Cadarn</text>
+							<text class="timer" id="timer_cadarn">Ready!</text>
+							<button class="input_button" id="button_cadarn">Caught</button>
+						</div>
+					</div>
+				</td>
+				<td>
+					<div class="clan" id="amlodd">
+						<div class="clan-img" style="background: url(logos/amlodd.png) no-repeat center center;"></div>
+						<div class="clan-info">
+							<text class="name" id="name_Amlodd">Amlodd</text>
+							<text class="timer" id="timer_amlodd">Ready!</text>
+							<button class="input_button" id="button_amlodd">Caught</button>
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div class="clan" id="trahaearn">
+						<div class="clan-img" style="background: url(logos/trahaearn.png) no-repeat center center;"></div>
+						<div class="clan-info">
+							<text class="name" id="name_trahaearn">Trahaearn</text>
+							<text class="timer" id="timer_trahaearn">Ready!</text>
+							<button class="input_button" id="button_trahaearn">Caught</button>
+						</div>
+					</div>
+				</td>
+				<td>
+					<div class="clan" id="hefin">
+						<div class="clan-img" style="background: url(logos/hefin.png) no-repeat center center;"></div>
+						<div class="clan-info">
+							<text class="name" id="name_hefin">Hefin</text>
+							<text class="timer" id="timer_hefin">Ready!</text>
+							<button class="input_button" id="button_hefin">Caught</button>
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div class="clan" id="crwys">
+						<div class="clan-img" style="background: url(logos/crwys.png) no-repeat center center;"></div>
+						<div class="clan-info">
+							<text class="name" id="name_Crwys">Crwys</text>
+							<text class="timer" id="timer_crwys">Ready!</text>
+							<button class="input_button" id="button_crwys">Caught</button>
+						</div>
+					</div>
+				</td>
+				<td>
+					<div class="clan" id="meilyr">
+						<div class="clan-img" style="background: url(logos/meilyr.png) no-repeat center center;"></div>
+						<div class="clan-info">
+							<text class="name" id="name_meilyr">Meilyr</text>
+							<text class="timer" id="timer_meilyr">Ready!</text>
+							<button class="input_button" id="button_meilyr">Caught</button>
+						</div>
+					</div>
+				</tr>
+			</tr>
+		</table>
+	</div>
+	
+	<p id="notice"></p>
+</body>
+
+<script id="timers">
+	var user_level = "";
+	var vos1 = "";
+	var vos2 = "";
+	var using_lurker = false;
+	var available_clans = [];
+	var ordered_clans = [];
+	var CLAN_TIMEOUT_SECONDS = 0.2*60;
+	
+	var clan_data = {
+		"iorwerth": {
+			xp: 125,
+			vos_xp: 150,
+			level: 91
+		},
+		"ithell": {
+			xp: 130,
+			vos_xp: 156,
+			level: 92
+		},
+		"cadarn": {
+			xp: 135,
+			vos_xp: 162,
+			level: 93
+		},
+		"amlodd": {
+			xp: 140,
+			vos_xp: 168,
+			level: 94
+		},
+		"trahaearn": {
+			xp: 145,
+			vos_xp: 174,
+			level: 95
+		},
+		"hefin": {
+			xp: 150,
+			vos_xp: 180,
+			level: 96
+		},
+		"crwys": {
+			xp: 155,
+			vos_xp: 186,
+			level: 97
+		},
+		"meilyr": {
+			xp: 170,
+			vos_xp: 204,
+			level: 98
+		}
+	};
+	
+	var timers = {
+		"iorwerth": 0,
+		"ithell": 0,
+		"cadarn": 0,
+		"amlodd": 0,
+		"trahaearn": 0,
+		"hefin": 0,
+		"crwys": 0,
+		"meilyr": 0
+	};
+</script>
+
+<script>
+	$(document).ready(function() {
+		$("#input_level").on('change', function() {
+			user_level = $("#input_level").val();
+			updateAvailableClans();
+			updateOrderedClans();
+			updateHighlightedClan();
+			//updateClanOrder();
+		});
+		$("#input_lurker").on('change', function() {
+			if ($("#input_lurker").prop('checked')) {
+				using_lurker = true;
+			} else {
+				using_lurker = false;
+			}
+			updateAvailableClans();
+			updateOrderedClans();
+			updateHighlightedClan();
+			//updateClanOrder();
+		});
+		$("#select_vos1").on('change', function() {
+			vos1 = $("#select_vos1").val();
+			updateVos();
+			updateOrderedClans();
+			updateHighlightedClan();
+			//updateClanOrder();
+		});
+		$("#select_vos2").on('change', function() {
+			vos2 = $("#select_vos2").val();
+			updateVos();
+			updateOrderedClans();
+			updateHighlightedClan();
+			//updateClanOrder();
+		});
+		
+		$("#button_iorwerth").click(function() {
+			$("#iorwerth").addClass("caught");
+			//updateVos();
+			setTimer("iorwerth", CLAN_TIMEOUT_SECONDS);
+			$("#button_iorwerth").prop("disabled", true);
+			$("#button_iorwerth").hide();
+			updateHighlightedClan();
+		});
+		$("#button_ithell").click(function() {
+			$("#ithell").addClass("caught");
+			//updateVos();
+			setTimer("ithell", CLAN_TIMEOUT_SECONDS);
+			$("#button_ithell").prop("disabled", true);
+			$("#button_ithell").hide();
+			updateHighlightedClan();
+		});
+		$("#button_cadarn").click(function() {
+			$("#cadarn").addClass("caught");
+			//updateVos();
+			setTimer("cadarn", CLAN_TIMEOUT_SECONDS);
+			$("#button_cadarn").prop("disabled", true);
+			$("#button_cadarn").hide();
+			updateHighlightedClan();
+		});
+		$("#button_amlodd").click(function() {
+			$("#amlodd").addClass("caught");
+			//updateVos();
+			setTimer("amlodd", CLAN_TIMEOUT_SECONDS);
+			$("#button_amlodd").prop("disabled", true);
+			$("#button_amlodd").hide();
+			updateHighlightedClan();
+		});
+		$("#button_trahaearn").click(function() {
+			$("#trahaearn").addClass("caught");
+			//updateVos();
+			setTimer("trahaearn", CLAN_TIMEOUT_SECONDS);
+			$("#button_trahaearn").prop("disabled", true);
+			$("#button_trahaearn").hide();
+			updateHighlightedClan();
+		});
+		$("#button_hefin").click(function() {
+			$("#hefin").addClass("caught");
+			//updateVos();
+			setTimer("hefin", CLAN_TIMEOUT_SECONDS);
+			$("#button_hefin").prop("disabled", true);
+			$("#button_hefin").hide();
+			updateHighlightedClan();
+		});
+		$("#button_crwys").click(function() {
+			$("#crwys").addClass("caught");
+			//updateVos();
+			setTimer("crwys", CLAN_TIMEOUT_SECONDS);
+			$("#button_crwys").prop("disabled", true);
+			$("#button_crwys").hide();
+			updateHighlightedClan();
+		});
+		$("#button_meilyr").click(function() {
+			$("#meilyr").addClass("caught");
+			//updateVos();
+			setTimer("meilyr", CLAN_TIMEOUT_SECONDS);
+			$("#button_meilyr").prop("disabled", true);
+			$("#button_meilyr").hide();
+			updateHighlightedClan();
+		});
+	});
+	
+	function updateAvailableClans() {
+		available_clans = [];
+		if (user_level !== "") {
+			var effective_level = parseInt(user_level);
+			if (using_lurker == true) {
+				effective_level = effective_level + 4;
+			}		
+			if (effective_level <= 90) {
+				$("#notice").html("You are unable to thieve from the Prifddinas elves.");
+			} else {
+				$("#notice").html("");
+			}
+			
+			for (var key in clan_data) {
+				if (clan_data[key].level <= effective_level) {
+					available_clans.push(key);
+				}
+			}
+		}
+	}
+	function updateOrderedClans() {
+		ordered_clans = [];
+		while (ordered_clans.length < available_clans.length) {
+			var current_xp;
+			var highest_xp = 0;
+			var highest_clan = "";
+			for (var i = 0; i < available_clans.length; i++) {
+				if (available_clans[i] == vos1 || available_clans[i] == vos2) {
+					current_xp = clan_data[available_clans[i]].vos_xp;
+				} else {
+					current_xp = clan_data[available_clans[i]].xp;
+				}
+				if (current_xp >= highest_xp && $.inArray(available_clans[i], ordered_clans) == -1) {
+					highest_xp = current_xp;
+					highest_clan = available_clans[i];
+				}
+			}
+			ordered_clans.push(highest_clan);
+		}
+	}
+	function updateHighlightedClan() {
+		var best_clan = getBestClan();
+		$("#highlighted_clan-img").attr("src", "logos/" + best_clan + ".png");
+		if (vos1 == best_clan || vos2 == best_clan) {
+			$("#highlighted_clan-xp").html(clan_data[best_clan].vos_xp + "xp");
+		} else {
+			$("#highlighted_clan-xp").html(clan_data[best_clan].xp + "xp");
+		}
+	}
+	
+	function updateVos() {
+		$("#iorwerth").removeClass("vos");
+		$("#ithell").removeClass("vos");
+		$("#cadarn").removeClass("vos");
+		$("#amlodd").removeClass("vos");
+		$("#trahaearn").removeClass("vos");
+		$("#hefin").removeClass("vos");
+		$("#crwys").removeClass("vos");
+		$("#meilyr").removeClass("vos");
+		//makeshift wait(3ms) before re-adding vos classes (necessary to restart the keyframes animations for some reason)
+		setTimeout(function(){
+			if (vos1 !== "") {
+				$("#" + vos1).addClass("vos");
+			}
+			if (vos2 !== "") {
+				$("#" + vos2).addClass("vos");
+			}
+		}, 3);
+	}
+	
+	/*
+	function updateClanOrder() {
+		var available_clans = [];
+		var ordered_clans = [];
+		if (user_level !== "" && vos1 != "" && vos2 != "") {
+			var effective_level = 0;
+			if (using_lurker == true) {
+				effective_level = parseInt(user_level) + 4;
+			} else {
+				effective_level = user_level;
+			}			
+			if (effective_level <= 90) {
+				$("#notice").html("You are unable to thieve from the Prifddinas elves.");
+			} else {
+				$("#notice").html("");
+			}
+			
+			for (var key in clan_data) {
+				if (clan_data[key].level <= effective_level) {
+					available_clans.push(key);
+				}
+			}
+			
+			while (ordered_clans.length < available_clans.length) {
+				var current_xp;
+				var highest_xp = 0;
+				var highest_clan = "";
+				for (var i = 0; i < available_clans.length; i++) {
+					if (available_clans[i] == vos1 || available_clans[i] == vos2) {
+						current_xp = clan_data[available_clans[i]].vos_xp;
+					} else {
+						current_xp = clan_data[available_clans[i]].xp;
+					}
+					if (current_xp >= highest_xp && $.inArray(available_clans[i], ordered_clans) == -1) {
+						highest_xp = current_xp;
+						highest_clan = available_clans[i];
+					}
+				}
+				ordered_clans.push(highest_clan);
+			}
+			
+			//Got to here. Clans successfully sorted.
+		}
+	}
+	*/
+	
+	function getBestClan() {
+		for (i = 0; i < ordered_clans.length; i++) {
+			if (!$("#" + ordered_clans[i]).hasClass("caught")) {
+				return ordered_clans[i];
+			}
+		}
+		return "placeholder";
+	}
+	
+	var globalTimer = setInterval(globalTick, 1000);
+	function globalTick() {
+		for (var key in timers) {
+			if (timers[key] > 0) {
+				timers[key] = timers[key] - 1;
+			}
+		}
+		updateTimes();
+	}
+	
+	function setTimer(clan, seconds) {
+		timers[clan] = seconds;
+		updateTimes();
+	}
+	
+	function updateTimes() {
+		for (var key in timers) {
+			if (timers[key] == 0) {
+				if ($("#" + key).hasClass("caught")) {
+					$("#timer_" + key).html("Ready!");
+					$("#" + key).removeClass("caught");
+					$("#button_" + key).prop("disabled", false);
+					$("#button_" + key).show();
+					updateVos();
+					updateHighlightedClan();
+				}
+			} else {
+				$("#timer_" + key).html(displayTime(timers[key]));
+			}
+		}
+	}
+	
+	function displayTime(seconds) {
+		var minutes = parseInt(seconds/60);
+		var seconds = seconds%60;
+		return minutes + "m " + seconds + "s"
+	}
+</script>
+</html>
